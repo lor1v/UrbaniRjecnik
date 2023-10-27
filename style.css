@@ -1,0 +1,254 @@
+@import url("https://fonts.googleapis.com/css2?family=Sriracha&display=swap");
+
+html {
+   height: 100%;
+}
+
+body {
+   color: #fff;
+   margin: 0;
+   min-height: 100%;
+
+}
+
+main {
+   height: 100%;
+   background-color: #fff;
+   color: #fff;
+}
+
+/* CSS for header */
+.header {
+   display: flex;
+
+   height: 70px;
+   justify-content: space-between;
+   align-items: center;
+   background-color: #f5f5f5;
+}
+
+.header .logo {
+   font-size: 25px;
+   font-family: "Sriracha", cursive;
+   color: #000;
+   text-decoration: none;
+   margin-left: 30px;
+}
+
+.nav-items {
+   display: flex;
+   justify-content: space-around;
+   align-items: center;
+   background-color: #f5f5f5;
+   margin-right: 20px;
+   gap: 30px;
+}
+
+.nav-items a {
+   text-decoration: none;
+   color: #000;
+
+   /*padding: 35px 20px;
+   */
+}
+
+.search-wrapper {
+   display: flex;
+   background-color: #e9e9e9;
+   height: 60px;
+}
+
+#search {
+   width: 75%;
+   align-self: center;
+   margin: auto;
+   padding: 6px;
+   border: none;
+   font-size: 17px;
+}
+
+#search:focus {
+   outline: none;
+}
+
+
+/* CSS for main element */
+
+.scrollable {
+   /*
+   overflow-y: auto;
+   overflow-x: hidden;
+   height: 100%;
+   */
+   position: absolute;
+   top: 130px;
+   /*70+60*/
+   bottom: 0;
+   left: 0;
+   right: 0;
+   overflow: auto;
+
+}
+
+.word-bg {
+   display: flex;
+   height: fit-content;
+
+   justify-content: center;
+   padding: 3%;
+   background-color: #fff;
+
+
+}
+
+.word {
+   /*display: block;
+   */
+   display: flex;
+   flex-direction: column;
+   height: fit-content;
+   /* 
+   justify-content: center;
+   */
+   align-items: center;
+   width: 70%;
+   /*
+   height: 520px;
+   background: linear-gradient(to bottom, rgba(0, 0, 0, 0.5) 0%, rgba(0, 0, 0, 0.5) 100%);
+   */
+
+   background-position: center;
+   background-color: #002020;
+}
+
+.word .the-word {
+   width: 90%;
+   font-family: sans-serif;
+   font-size: 40px;
+   margin-left: 200 px;
+   padding-top: 5%;
+   color: #fff;
+   font-weight: bold;
+   height: auto;
+   margin: 0;
+}
+
+.word .meaning {
+   font-size: 20px;
+   width: 90%;
+   color: #d1d1d1;
+   text-align: left;
+   margin: 20px 0;
+}
+
+.react-buttons {
+   /*
+   justify-self: end;
+   */
+   padding-top: 3%;
+   padding-bottom: 3%;
+   width: 90%;
+   align-items: left;
+
+}
+
+.like {
+   padding: 1%;
+   background-color: #002020;
+
+   font-size: 20px;
+   color: #d1d1d1;
+   margin: 20px;
+   align-items: left;
+
+}
+
+.dislike {
+   padding: 1%;
+   background-color: #002020;
+
+   font-size: 20px;
+   color: #d1d1d1;
+   margin: 20px;
+   align-items: left;
+
+}
+
+.intro button {
+   background-color: #5edaf0;
+   color: #000;
+   padding: 10px 25px;
+   border: none;
+   border-radius: 5px;
+   font-size: 20px;
+   font-weight: bold;
+   cursor: pointer;
+   box-shadow: 0px 0px 20px rgba(255, 255, 255, 0.4)
+}
+
+
+/* CSS for footer */
+.footer {
+   display: flex;
+   justify-content: space-between;
+   align-items: center;
+   background-color: #f5f5f5;
+   padding: 40px 80px;
+}
+
+.footer .copy {
+   color: #fff;
+}
+
+.bottom-links {
+   display: flex;
+   justify-content: space-around;
+   align-items: center;
+   padding: 40px 0;
+}
+
+.bottom-links .links {
+   display: flex;
+   flex-direction: column;
+   justify-content: center;
+   align-items: center;
+   padding: 0 40px;
+}
+
+.bottom-links .links span {
+   font-size: 20px;
+   color: #fff;
+   text-transform: uppercase;
+   margin: 10px 0;
+}
+
+.bottom-links .links a {
+   text-decoration: none;
+   color: #a1a1a1;
+   padding: 10px 20px;
+}
+
+
+
+/* When the screen is less than 600px wide, stack the links and the search field vertically instead of horizontally */
+@media screen and (max-width: 600px) {
+
+   .topnav a,
+   .topnav input[type=text] {
+      float: none;
+      display: block;
+      text-align: left;
+      width: 100%;
+      margin: 0;
+      padding: 14px;
+   }
+
+   .topnav input[type=text] {
+      border: 1px solid #ccc;
+   }
+
+}
+
+.hide {
+   display: none;
+}

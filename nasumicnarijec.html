@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+   <meta charset="UTF-8">
+   <meta http-equiv="X-UA-Compatible" content="IE=edge">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>Urbani Rječnik</title>
+   <link rel="stylesheet" href="randomstyle.css">
+
+
+</head>
+
+<body>
+
+
+   <header class="header">
+      <a href="index.html" class="logo">Urbani Rječnik</a>
+      <nav class="nav-items">
+         <a href="index.html">Početna stranica</a>
+         <a href="dodajrijec.html">Dodaj riječ</a>
+         <a href="nasumicnarijec.html">Nasumična riječ</a>
+
+      </nav>
+   </header>
+
+   <main>
+
+      <div class="words-container" data-user-card-container></div>
+      <template data-user-template>
+         <div class="word-bg">
+            <div class="word">
+               <div class="the-word"></div>
+               <div class="meaning"> </div>
+               <div class="react-buttons">
+                  <button class="like">Likes: 0</button>
+                  <button class="dislike">disLikes: 0</button>
+               </div>
+            </div>
+         </div>
+
+      </template>
+
+
+
+   </main>
+   <script src="randomscript.js" defer></script>
+</body>
+
+</html>

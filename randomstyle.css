@@ -1,0 +1,158 @@
+@import url("https://fonts.googleapis.com/css2?family=Sriracha&display=swap");
+
+html {
+   height: 100%;
+}
+
+body {
+   color: #fff;
+   margin: 0;
+   min-height: 100%;
+
+}
+
+main {
+   height: 100%;
+   background-color: #fff;
+   color: #fff;
+}
+
+/* CSS for header */
+.header {
+   display: flex;
+
+   height: 70px;
+   justify-content: space-between;
+   align-items: center;
+   background-color: #f5f5f5;
+}
+
+.header .logo {
+   font-size: 25px;
+   font-family: "Sriracha", cursive;
+   color: #000;
+   text-decoration: none;
+   margin-left: 30px;
+}
+
+.nav-items {
+   display: flex;
+   justify-content: space-around;
+   align-items: center;
+   background-color: #f5f5f5;
+   margin-right: 20px;
+   gap: 30px;
+}
+
+.nav-items a {
+   text-decoration: none;
+   color: #000;
+
+   /*padding: 35px 20px;
+   */
+}
+
+
+.word-bg {
+   position: absolute;
+   left: 0;
+   right: 0;
+   bottom: 0;
+   top: 70px;
+
+   /*
+   height: fit-content;
+   */
+   justify-content: center;
+   padding: 3%;
+   background-color: #fff;
+
+
+}
+
+.word {
+   /*display: block;
+   */
+   display: flex;
+   flex-direction: column;
+   height: fit-content;
+   margin-left: auto;
+   margin-right: auto;
+   /* 
+   justify-content: center;
+   */
+   align-items: center;
+   width: 70%;
+   /*
+   height: 520px;
+   background: linear-gradient(to bottom, rgba(0, 0, 0, 0.5) 0%, rgba(0, 0, 0, 0.5) 100%);
+   */
+
+   background-position: center;
+   background-color: #002020;
+}
+
+.word .the-word {
+   width: 90%;
+   font-family: sans-serif;
+   font-size: 40px;
+   margin-left: 200 px;
+   padding-top: 5%;
+   color: #fff;
+   font-weight: bold;
+   height: auto;
+   margin: 0;
+}
+
+.word .meaning {
+   font-size: 20px;
+   width: 90%;
+   color: #d1d1d1;
+   text-align: left;
+   margin: 20px 0;
+}
+
+.react-buttons {
+   /*
+   justify-self: end;
+   */
+   padding-top: 3%;
+   padding-bottom: 3%;
+   width: 90%;
+   align-items: left;
+
+}
+
+.like {
+   padding: 1%;
+   background-color: #002020;
+
+   font-size: 20px;
+   color: #d1d1d1;
+   margin: 20px;
+   align-items: left;
+
+}
+
+.dislike {
+   padding: 1%;
+   background-color: #002020;
+
+   font-size: 20px;
+   color: #d1d1d1;
+   margin: 20px;
+   align-items: left;
+
+}
+
+.intro button {
+   background-color: #5edaf0;
+   color: #000;
+   padding: 10px 25px;
+   border: none;
+   border-radius: 5px;
+   font-size: 20px;
+   font-weight: bold;
+   cursor: pointer;
+   box-shadow: 0px 0px 20px rgba(255, 255, 255, 0.4)
+}
