@@ -12,7 +12,7 @@
 
 <body>
   <header class="header">
-    <a href="#" class="logo">Urbani Rječnik</a>
+    <a href="#" class="logo">urbani rječnik</a>
     <nav class="nav-items">
       <a href="#">Početna stranica</a>
       <a href="dodajrijec.html">Dodaj riječ</a>
@@ -25,7 +25,12 @@
   <main>
 
     <div class="search-wrapper"> <!-- topnav-->
-      <input type="search" id="search" placeholder="Search.." data-search>
+      <!--
+      <input type="search" id="search" placeholder="Search.." data-search onkeypress="searchfunction">
+      -->
+
+      <input type="search" id="search" placeholder="Search.." data-search onkeypress="searchfunction(event)">
+
     </div>
 
     <!--
@@ -125,7 +130,7 @@
   </footer>
   -->
   <!--
-    
+
   -->
   <script src="script.js" defer></script>
 </body>

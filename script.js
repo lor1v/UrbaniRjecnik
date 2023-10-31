@@ -1,9 +1,30 @@
 const userCardTemplate = document.querySelector("[data-user-template]")
 const userCardContainer = document.querySelector(".words-container")
-const searchInput = document.querySelector("[data-search]")
+const searchInput = document.querySelector("#search")
 
-let words = []
+let words = [];
+endpointDefault = "http://netwwork.duckdns.org:8080/words";
 
+function searchfunction(e) {
+   if (e.key === "Enter") {
+      hideAllDisplayedDivs();
+      if (searchInput.value != "") {
+         const substring = searchInput.value;
+         const endpoint = "http://netwwork.duckdns.org:8080/words/search?word="
+
+         searchDisplay(endpoint + substring);
+         searchInput.value = "";
+      }
+      else {
+         defaultDisplay();
+
+      }
+   }
+
+}
+
+/*
+//radilo je prije za search
 searchInput.addEventListener("input", (e) => {
    const value = e.target.value
    console.log(words)
@@ -12,6 +33,7 @@ searchInput.addEventListener("input", (e) => {
       word.element.classList.toggle("hide", !isVisible)
    })
 })
+*/
 
 /*
 //ovo je radilo inace s placholdr podacima
@@ -29,59 +51,82 @@ fetch("https://jsonplaceholder.typicode.com/posts")
       })
    })
 */
-const wordId = "";
 
+function searchDisplay(endpoint) {
 
-//ovo nis ne radi rn
+   fetch(endpoint, { mode: 'cors' }).then(res => res.json()).then(data => {
+      /*
+      hideAllDisplayedDivs();*/
 
-fetch('http://netwwork.duckdns.org:8080/words', { mode: 'cors' }).then(res => { console.log(res); return res.json() }).then(data => {
-   console.log(data);
-   words = data.map(word => {
-      const card = userCardTemplate.content.cloneNode(true).querySelector(".word-bg")
-      const header = card.querySelector(".the-word")
-      const body = card.querySelector(".meaning")
-      console.log(word.word);
-      header.textContent = word.word;
-      body.textContent = word.definitions[0].definition; //deifnition
-      console.log(body.textContent);
-      userCardContainer.append(card)
-      return {
-         title: word.title, body: word.body, element: card
+      words = data.map(word => {
+         for (const elem of word.definitions) {
+
+            const card = userCardTemplate.content.cloneNode(true).querySelector(".word-bg")
+            const header = card.querySelector(".the-word")
+            const body = card.querySelector(".meaning")
+            header.textContent = word.word;
+            body.textContent = elem.definition; //deifnition
+            userCardContainer.append(card)
+
+         } return;
       }
-   }
 
-   )
-})
+      )
+   })
+
+   /*
+   displayFetch("http://netwwork.duckdns.org:8080/words");*/
+
+}
+
+function hideAllDisplayedDivs() {
+   const divs = userCardContainer.querySelectorAll(".word-bg");
+   divs.forEach((div) => {
+      div.style.display = "none";
+   });
+}
+
+const wordId = "";
+//radi
+function defaultDisplay() {
+
+   fetch(endpointDefault, { mode: 'cors' }).then(res => res.json()).then(data => {
+      words = data.content.map(word => {
+
+         for (const elem of word.definitions) {
+
+            const card = userCardTemplate.content.cloneNode(true).querySelector(".word-bg")
+            const header = card.querySelector(".the-word")
+            const body = card.querySelector(".meaning")
+            header.textContent = word.word;
+            body.textContent = elem.definition; //deifnition
+            userCardContainer.append(card)
+
+         } return;
+
+
+      }
+
+      )
+   })
+}
 
 const container = document.querySelector('.words-container');
 
 container.addEventListener('click', (event) => {
    if (event.target.classList.contains('like')) {
-      console.log("clicked");
-      if (event.target.textContent == "more likes") {
-         event.target.textContent = "less likes"
-      } else {
-         event.target.textContent = "more likes";
-      }
-      // Handle the "like" button click here
+
+      addLike(event.target);
+      //run function addLike()
+
    }
 });
 
+function addLike() {
+
+}
 
 
+defaultDisplay();
 
 
-
-/*
-//moj pokusaj koji nije radio
-document.addEventListener("DOMContentLoaded", () => {
-   const likeButton = document.getElementById("like")
-   let likeCount = 0
-   fetch("https://jsonplaceholder.typicode.com/posts")
-      .then(res => res.json)
-      .then(data => {
-         data
-      })
-
-})
-*/
