@@ -1,9 +1,12 @@
 const userCardTemplate = document.querySelector("[data-user-template]")
 const userCardContainer = document.querySelector(".words-container")
 const searchInput = document.querySelector("#search")
+const buttonNext = document.querySelector(".next");
+const buttonPrev = document.querySelector(".prev");
+let currentPageNumber = 0;
+
 
 let words = [];
-endpointDefault = "http://netwwork.duckdns.org:8080/words";
 
 function searchfunction(e) {
    if (e.key === "Enter") {
@@ -23,44 +26,12 @@ function searchfunction(e) {
 
 }
 
-/*
-//radilo je prije za search
-searchInput.addEventListener("input", (e) => {
-   const value = e.target.value
-   console.log(words)
-   users.forEach(word => {
-      const isVisible = word.title.includes(value)
-      word.element.classList.toggle("hide", !isVisible)
-   })
-})
-*/
-
-/*
-//ovo je radilo inace s placholdr podacima
-fetch("https://jsonplaceholder.typicode.com/posts")
-   .then(res => res.json())
-   .then(data => {
-      users = data.map(user => {
-         const card = userCardTemplate.content.cloneNode(true).querySelector(".word-bg")
-         const header = card.querySelector(".the-word")
-         const body = card.querySelector(".meaning")
-         header.textContent = user.title
-         body.textContent = user.body
-         userCardContainer.append(card)
-         return { title: user.title, body: user.body, element: card }
-      })
-   })
-*/
-
 function searchDisplay(endpoint) {
-
    fetch(endpoint, { mode: 'cors' }).then(res => res.json()).then(data => {
       /*
       hideAllDisplayedDivs();*/
-
       words = data.map(word => {
          for (const elem of word.definitions) {
-
             const card = userCardTemplate.content.cloneNode(true).querySelector(".word-bg")
             const header = card.querySelector(".the-word")
             const body = card.querySelector(".meaning")
@@ -74,8 +45,6 @@ function searchDisplay(endpoint) {
       )
    })
 
-   /*
-   displayFetch("http://netwwork.duckdns.org:8080/words");*/
 
 }
 
@@ -87,46 +56,101 @@ function hideAllDisplayedDivs() {
 }
 
 const wordId = "";
+
+const defaultEnd = "http://netwwork.duckdns.org:8080/definitions/paged";
 //radi
-function defaultDisplay() {
+function display(endpoint) {
+   hideAllDisplayedDivs();
+   fetch(endpoint, { mode: 'cors' }).then(res => res.json()).then(data => {
+      console.log(data)
+      defs = data.content.map(elem => {
 
-   fetch(endpointDefault, { mode: 'cors' }).then(res => res.json()).then(data => {
-      words = data.content.map(word => {
+         const card = userCardTemplate.content.cloneNode(true).querySelector(".word-bg")
+         const header = card.querySelector(".the-word")
+         const body = card.querySelector(".meaning")
+         const user = card.querySelector(".byUser")
+         const dislike = card.querySelector(".dislike");
+         const like = card.querySelector(".like");
 
-         for (const elem of word.definitions) {
+         header.textContent = elem.word.word;
+         body.textContent = elem.definition;
+         user.textContent = "Predložio korisnik: " + elem.submitted_by_user;
 
-            const card = userCardTemplate.content.cloneNode(true).querySelector(".word-bg")
-            const header = card.querySelector(".the-word")
-            const body = card.querySelector(".meaning")
-            header.textContent = word.word;
-            body.textContent = elem.definition; //deifnition
-            userCardContainer.append(card)
+         like.id = elem.id;
+         like.textContent = "Sviđatelj: " + elem.upvotes;
+         like.num = elem.upvotes;
+         dislike.id = elem.id;
+         dislike.textContent = "Mrzitelj: " + elem.downvotes;
+         dislike.num = elem.downvotes;
 
-         } return;
+         userCardContainer.append(card)
+      });
 
 
+      const pageable = data.pageable
+      const first = pageable.pageNumber == 0;
+      const last = data.last;
+      currentPageNumber = pageable.pageNumber;
+
+      if (first == true) {
+         /*
+         buttonPrev.style.display = "none";*/
+         buttonPrev.style.visibility = "hidden";
+
+      } else {
+         buttonPrev.style.visibility = "visible";
       }
+      if (last == true) {/*
+         buttonNext.style.display = "none";*/
+         buttonNext.style.visibility = "hidden";
+      } else {
+         buttonNext.style.visibility = "visible";
+      }
+      console.log(first, last);
 
-      )
    })
+
 }
 
-const container = document.querySelector('.words-container');
+
+//const container = document.querySelector('.words-container');
+const container = document.querySelector('.scrollable');
 
 container.addEventListener('click', (event) => {
    if (event.target.classList.contains('like')) {
-
       addLike(event.target);
-      //run function addLike()
-
+      event.target.textContent = "Sviđatelj: " + (parseInt(event.target.textContent.replace("Sviđatelj: ", "")) + 1);
    }
+   if (event.target.classList.contains('dislike')) {
+      addDislike(event.target);
+      event.target.textContent = "Mrzitelj: " + (parseInt(event.target.textContent.replace("Mrzitelj: ", "")) + 1);
+   }
+   if (event.target.classList.contains('next')) {
+      nextPage();
+   }
+   if (event.target.classList.contains('prev')) {
+      prevPage();
+   }
+
 });
 
-function addLike() {
-
+function addLike(button) {
+   fetch("http://netwwork.duckdns.org:8080/definitions/" + button.id + "/upvote", { mode: 'cors', method: 'PUT' });
+}
+function addDislike(button) {
+   fetch("http://netwwork.duckdns.org:8080/definitions/" + button.id + "/downvote", { mode: 'cors', method: 'PUT' });
+}
+function nextPage() {
+   hideAllDisplayedDivs();
+   currentPageNumber++;
+   display("http://netwwork.duckdns.org:8080/definitions/paged?pageIndex=" + currentPageNumber)
+}
+function prevPage() {
+   hideAllDisplayedDivs();
+   currentPageNumber--;
+   display("http://netwwork.duckdns.org:8080/definitions/paged?pageIndex=" + currentPageNumber)
 }
 
-
-defaultDisplay();
+display(defaultEnd);
 
 

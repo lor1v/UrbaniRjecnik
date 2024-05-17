@@ -24,40 +24,12 @@
 
   <main>
 
-    <div class="search-wrapper"> <!-- topnav-->
-      <!--
-      <input type="search" id="search" placeholder="Search.." data-search onkeypress="searchfunction">
-      -->
+    <div class="search-wrapper">
 
-      <input type="search" id="search" placeholder="Search.." data-search onkeypress="searchfunction(event)">
+      <input type="search" id="search" placeholder="Pretraži..." data-search onkeypress="searchfunction(event)">
 
     </div>
 
-    <!--
-    <div class="word-bg">
-      <div class="word">
-        <div class="the-word">bojler</div>
-        <div class="meaning"> Bojler je zatvorena posuda u kojoj se voda ili neka druga tečnost zagrijava pod pritiskom.
-          Nakon toga topla tečnost cirkuliše izvan bojlera i koristi se u razne svrhe.
-          Konstrukcija bojlera je većinom od čelika, bakra ili željeza. Izvor toplote može biti sagorjevanje drveta,
-          uglja ili drugih goriva. Električni bojleri iskorištavaju otpor za zagrijavanje. Moguće je koristiti i
-          nuklearnu fuziju.
-          Tipovi bojlera su: a) bojleri koji u sredini cijevi imaju sistem za zagrijavanje a voda koja se zagrijava je
-          izvan cijevi. b) bojleri koji u sredini cijevi imaju vodu koju treba zagrijati a izvor toplote je izvan nje c)
-          primitivni bojleri bez cijevi a vatra zagrijava jednu stranu posude s vodom.
-          Većina bojlera zagrijava vodu dok ne proključa i koristi paru pod tom novonastalom temperaturom. Bojleri sa
-          produženim zagrijavanjem zagrijavaju vodu dok ne proključa, a onda zagrijavaju i paru posebnim grijačem. Ovako
-          visoke temperature mogu smanjiti cjelokupnu termalnu efikasnost čitavog predmeta jer veća temperatura pare
-          zahtjeva višu temperaturu ispusnih gasova. Glavna prednost ovog tipa bojlera je izdvajanje toplote iz pare bez
-          stvaranja kondenzacije i tako sprečavaju štetu na cijevima i lopaticama turbine. </div>
-        <div class="react-buttons">
-          <button class="like">Like</button>
-          <button class="dislike">disLike</button>
-        </div>
-      </div>
-    </div>
-
-    -->
     <div class="scrollable">
       <div class="words-container" data-user-card-container></div>
 
@@ -66,72 +38,28 @@
           <div class="word">
             <div class="the-word"></div>
             <div class="meaning"> </div>
+            <div class="byUser"></div>
             <div class="react-buttons">
-              <button class="like">Likes: 0</button>
-              <button class="dislike">disLikes: 0</button>
+              <button class="like">Sviđatelj: 0</button>
+              <button class="dislike">Mrzitelj: 0</button>
             </div>
           </div>
         </div>
 
       </template>
+
+      <div class="page-buttons">
+        <button class="prev">
+          << </button>
+            <button class="next"> >> </button>
+
+      </div>
+
     </div>
 
-    <!-- ovo je sranje
-       <div class="word-bg">
-        <div class="word">
 
-          <h1 data-header></h1>
-          <p data-body> </p>
-          <div>
-            <button class="like">Like</button>
-            <button class="dislike">disLike</button>
-          </div>
-
-        </div>
-      </div>
--->
-
-    <!--
-    <div class="word-bg">
-      <div class="word">
-        <h1>bojler</h1>
-        <p>Boca od 2L Karlovačkog piva.</p>
-        <div>
-          <button class="like">Like</button>
-          <button class="dislike">disLike</button>
-        </div>
-        
-      </div>
-    </div>
-  -->
   </main>
 
-  <!--
-  <footer class="footer">
-
-    <div class="bottom-links">
-      <div class="links">
-        <span>More Info</span>
-        <a href="#">Home</a>
-        <a href="#">About</a>
-        <a href="#">Contact</a>
-      </div>
-      
-    
-     
-      <div class="links">
-        <span>Social Links</span>
-        <a href="#"><i class="fab fa-facebook"></i></a>
-        <a href="#"><i class="fab fa-twitter"></i></a>
-        <a href="#"><i class="fab fa-instagram"></i></a>
-      </div>
-    </div>
-  
-  </footer>
-  -->
-  <!--
-
-  -->
   <script src="script.js" defer></script>
 </body>
 
